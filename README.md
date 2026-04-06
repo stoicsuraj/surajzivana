@@ -1,3 +1,3 @@
-**surajasajivana**
+**surajasyajivana**
 
 Personal Blog of Suraj
