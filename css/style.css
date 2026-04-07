@@ -7,7 +7,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Light mode colors */
   --bg-light: hsl(53deg 73% 91%);
   --text-light: hsl(203deg 11% 15%);
   --accent-light: hsl(351deg 66% 2%);
@@ -15,7 +14,6 @@
   --link-light: hsl(172deg 18% 41%);
   --quote-light: hsl(351deg 66% 48%);
   
-  /* Dark mode colors */
   --bg-dark: hsl(200deg 4.8% 7.5%);
   --text-dark: hsl(220deg 3% 79%);
   --accent-dark: hsl(70.4deg 35.7% 55.5%);
@@ -23,7 +21,6 @@
   --link-dark: hsl(343.1deg 47% 67.5%);
   --quote-dark: hsl(102deg 100% 86%);
   
-  /* Default to light mode */
   --bg: var(--bg-light);
   --text: var(--text-light);
   --accent: var(--accent-light);
@@ -56,7 +53,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Header & Navigation */
+
 header {
   background-color: var(--bg);
   color: var(--text);
@@ -144,7 +141,6 @@ nav a.active {
   border-color: var(--accent);
 }
 
-/* Main Content */
 main {
   flex: 1;
   max-width: 900px;
@@ -173,7 +169,6 @@ section.active {
   }
 }
 
-/* Home Section */
 #home h1,
 #posts h1,
 #books h1,
@@ -246,7 +241,6 @@ section.active {
   opacity: 0.85;
 }
 
-/* Posts Section */
 #posts h1 {
   font-size: 1.8rem;
   margin-bottom: 2rem;
@@ -257,7 +251,6 @@ section.active {
   gap: 0;
 }
 
-/* Post Detail View */
 .post-detail {
   background: transparent;
   padding: 0;
@@ -335,7 +328,6 @@ section.active {
   border-color: var(--accent);
 }
 
-/* Books Section */
 .books-grid,
 .papers-grid {
   display: grid;
@@ -444,7 +436,6 @@ section.active {
   font-weight: 500;
 }
 
-/* About Section */
 #about {
   background: transparent;
   padding: 0;
@@ -492,7 +483,6 @@ section.active {
 #about a:hover {
   color: var(--accent);
 }
-/* Social Links */
 .social-links {
   display: flex;
   flex-wrap: wrap;
@@ -530,7 +520,6 @@ section.active {
   display: none;
 }
 
-/* Footer */
 footer {
   background-color: var(--bg);
   color: var(--text);
@@ -555,7 +544,6 @@ footer a:hover {
   color: var(--accent);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
