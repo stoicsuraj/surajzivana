@@ -1,0 +1,26 @@
+{
+  "currentlyReading": [
+    {
+      "id": "paper-1",
+      "title": "On Consciousness and Subjective Experience",
+      "authors": "John Smith et al",
+      "dateAdded": "Apr 3, 2026"
+    }
+  ],
+  "alreadyRead": [
+    {
+      "id": "paper-2",
+      "title": "The Nature of Knowledge",
+      "authors": "Jane Doe et al",
+      "whatLearned": "Gained insights into epistemological frameworks and their modern applications.",
+      "dateRead": "Mar 10, 2026"
+    },
+    {
+      "id": "paper-3",
+      "title": "Phenomenology in Contemporary Philosophy",
+      "authors": "Michael Brown et al",
+      "whatLearned": "Understood the interconnection between perception and reality.",
+      "dateRead": "Feb 15, 2026"
+    }
+  ]
+}

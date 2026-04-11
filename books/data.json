@@ -1,0 +1,26 @@
+{
+  "currentlyReading": [
+    {
+      "id": "book-1",
+      "title": "The Brothers Karamazov",
+      "author": "Fyodor Dostoevsky",
+      "dateAdded": "Apr 5, 2026"
+    }
+  ],
+  "alreadyRead": [
+    {
+      "id": "book-2",
+      "title": "Crime and Punishment",
+      "author": "Fyodor Dostoevsky",
+      "feedback": "A masterpiece that explores the human psyche.",
+      "dateRead": "Mar 15, 2026"
+    },
+    {
+      "id": "book-3",
+      "title": "The Stranger",
+      "author": "Albert Camus",
+      "feedback": "Profound meditation on the absurd nature of existence.",
+      "dateRead": "Feb 20, 2026"
+    }
+  ]
+}

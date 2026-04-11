@@ -1,11 +1,15 @@
 const app = {
   posts: [],
+  books: null,
+  papers: null,
   currentTheme: 'light',
 
   init() {
     this.loadTheme();
     this.setupThemeToggle();
     this.loadPosts();
+    this.loadBooks();
+    this.loadPapers();
     this.bindEvents();
     this.showSection('home');
   },
@@ -39,6 +43,7 @@ const app = {
         id: 'revered-stranger',
         title: 'revered stranger',
         date: 'Apr 5, 2026',
+        dateObj: new Date('Apr 5, 2026'),
         snippet: 'lost in a lady\'s imagination during a storm.',
         filename: 'revered-stranger.html'
       },
@@ -46,6 +51,7 @@ const app = {
         id: 'unreciprocated-devoutness',
         title: 'unreciprocated devoutness',
         date: 'Mar 28, 2026',
+        dateObj: new Date('Mar 28, 2026'),
         snippet: ' devotion that goes unrecognized and the quiet resilience within.',
         filename: 'unreciprocated-devoutness.html'
       },
@@ -53,6 +59,7 @@ const app = {
         id: 'the-fall-of-icarus',
         title: 'the fall of icarus',
         date: 'Mar 20, 2026',
+        dateObj: new Date('Mar 20, 2026'),
         snippet: 'a meditation on ambition, mortality, and what it means to reach for the sky.',
         filename: 'the-fall-of-icarus.html'
       },
@@ -60,6 +67,7 @@ const app = {
         id: 'ekant-man',
         title: 'एकान्त मन',
         date: 'Feb 25, 2026',
+        dateObj: new Date('Feb 25, 2026'),
         snippet: 'solitude captured in words.',
         filename: 'ekant-man.html'
       },
@@ -67,6 +75,7 @@ const app = {
         id: 'arthdah',
         title: 'अर्थदाह',
         date: 'Jan 22, 2026',
+        dateObj: new Date('Jan 22, 2026'),
         snippet: 'न देव मान्छु म - questioning dogma and embracing inner fire.',
         filename: 'arthdah.html'
       },
@@ -74,6 +83,7 @@ const app = {
         id: 'basantapur',
         title: 'basantapur, and the weight of faces',
         date: 'Jan 18, 2026',
+        dateObj: new Date('Jan 18, 2026'),
         snippet: 'a meditation on solitude, misunderstanding, and the impossibility of full translation in human connection.',
         filename: 'basantapur.html'
       },
@@ -81,6 +91,7 @@ const app = {
         id: 'i-hate-you',
         title: 'i hate you',
         date: 'Feb 17, 2025',
+        dateObj: new Date('Feb 17, 2025'),
         snippet: 'a raw exploration of love masked as hate, pride bruised by loss.',
         filename: 'i-hate-you.html'
       },
@@ -88,6 +99,7 @@ const app = {
         id: 'me-and-her',
         title: 'me and her',
         date: 'Feb 11, 2024',
+        dateObj: new Date('Feb 11, 2024'),
         snippet: 'a poignant reflection on love, loss, and the courage to let go.',
         filename: 'me-and-her.html'
       },
@@ -95,6 +107,7 @@ const app = {
         id: 'anitya-satya',
         title: 'अनित्यं सत्यं',
         date: 'Mar 6, 2024',
+        dateObj: new Date('Mar 6, 2024'),
         snippet: 'a meditation on impermanence, the transience of life, and truth eternal.',
         filename: 'anitya-satya.html'
       },
@@ -102,10 +115,37 @@ const app = {
         id: 'schooling',
         title: 'schooling',
         date: 'Jul 18, 2022',
+        dateObj: new Date('Jul 18, 2022'),
         snippet: 'a reflection on overconfidence, growth, and the lessons learned from a principal and a tree.',
         filename: 'schooling.html'
       }
     ];
+  },
+
+  async loadBooks() {
+    try {
+      const response = await fetch('./books/data.json');
+      this.books = await response.json();
+    } catch (error) {
+      console.error('Error loading books:', error);
+      this.books = { currentlyReading: [], alreadyRead: [] };
+    }
+  },
+
+  async loadPapers() {
+    try {
+      const response = await fetch('./papers/data.json');
+      this.papers = await response.json();
+    } catch (error) {
+      console.error('Error loading papers:', error);
+      this.papers = { currentlyReading: [], alreadyRead: [] };
+    }
+  },
+
+  getRecentPosts(limit = 4) {
+    return [...this.posts]
+      .sort((a, b) => b.dateObj - a.dateObj)
+      .slice(0, limit);
   },
 
   bindEvents() {
@@ -144,6 +184,8 @@ const app = {
       
       if (name === 'home') this.renderHome();
       else if (name === 'posts') this.renderPosts();
+      else if (name === 'books') this.renderBooks();
+      else if (name === 'papers') this.renderPapers();
     }
   },
 
@@ -151,9 +193,11 @@ const app = {
     const content = document.getElementById('home-content');
     if (!content) return;
     
+    const recentPosts = this.getRecentPosts(4);
+    
     let html = '<h1><i>swagat cha</i></h1><p><i>few of the stuffs i wrote</i></p><div class="posts-grid">';
     
-    this.posts.forEach(post => {
+    recentPosts.forEach(post => {
       html += `
         <div class="post-card">
           <div class="post-date">${post.date}</div>
@@ -164,6 +208,47 @@ const app = {
     });
     
     html += '</div>';
+
+    // Add currently reading books section
+    if (this.books && this.books.currentlyReading.length > 0) {
+      html += '<h2 class="section-subtitle">currently reading</h2>';
+      html += '<div class="books-papers-container"><div class="books-section">';
+      html += '<h3 class="subsection-title">books</h3><div class="reading-list">';
+      
+      this.books.currentlyReading.forEach(book => {
+        html += `
+          <div class="reading-item">
+            <span class="reading-title">${book.title}</span>
+            <span class="reading-author">${book.author}</span>
+          </div>
+        `;
+      });
+      
+      html += '</div></div>';
+    }
+
+    // Add currently reading papers section
+    if (this.papers && this.papers.currentlyReading.length > 0) {
+      if (!this.books || this.books.currentlyReading.length === 0) {
+        html += '<h2 class="section-subtitle">currently reading</h2>';
+        html += '<div class="books-papers-container">';
+      }
+      
+      html += '<div class="papers-section"><h3 class="subsection-title">papers</h3><div class="reading-list">';
+      
+      this.papers.currentlyReading.forEach(paper => {
+        html += `
+          <div class="reading-item">
+            <span class="reading-title">${paper.title}</span>
+            <span class="reading-author">${paper.authors}</span>
+          </div>
+        `;
+      });
+      
+      html += '</div></div>';
+      html += '</div>';
+    }
+    
     content.innerHTML = html;
   },
 
@@ -221,6 +306,78 @@ const app = {
     } catch (error) {
       console.error('Error loading post:', error);
     }
+  },
+
+  renderBooks() {
+    const content = document.getElementById('books-content');
+    if (!content || !this.books) return;
+
+    let html = '<h1>books</h1>';
+
+    if (this.books.currentlyReading && this.books.currentlyReading.length > 0) {
+      html += '<h2 class="books-section-title">currently reading</h2><div class="books-list">';
+      this.books.currentlyReading.forEach(book => {
+        html += `
+          <div class="book-card">
+            <h3 class="book-title">${book.title}</h3>
+            <p class="book-author">by ${book.author}</p>
+          </div>
+        `;
+      });
+      html += '</div>';
+    }
+
+    if (this.books.alreadyRead && this.books.alreadyRead.length > 0) {
+      html += '<h2 class="books-section-title">already read</h2><div class="books-list">';
+      this.books.alreadyRead.forEach(book => {
+        html += `
+          <div class="book-card">
+            <h3 class="book-title">${book.title}</h3>
+            <p class="book-author">by ${book.author}</p>
+            <p class="book-feedback">${book.feedback}</p>
+          </div>
+        `;
+      });
+      html += '</div>';
+    }
+
+    content.innerHTML = html;
+  },
+
+  renderPapers() {
+    const content = document.getElementById('papers-content');
+    if (!content || !this.papers) return;
+
+    let html = '<h1>papers</h1>';
+
+    if (this.papers.currentlyReading && this.papers.currentlyReading.length > 0) {
+      html += '<h2 class="papers-section-title">currently reading</h2><div class="papers-list">';
+      this.papers.currentlyReading.forEach(paper => {
+        html += `
+          <div class="paper-card">
+            <h3 class="paper-title">${paper.title}</h3>
+            <p class="paper-authors">${paper.authors}</p>
+          </div>
+        `;
+      });
+      html += '</div>';
+    }
+
+    if (this.papers.alreadyRead && this.papers.alreadyRead.length > 0) {
+      html += '<h2 class="papers-section-title">already read</h2><div class="papers-list">';
+      this.papers.alreadyRead.forEach(paper => {
+        html += `
+          <div class="paper-card">
+            <h3 class="paper-title">${paper.title}</h3>
+            <p class="paper-authors">${paper.authors}</p>
+            <p class="paper-learned">${paper.whatLearned}</p>
+          </div>
+        `;
+      });
+      html += '</div>';
+    }
+
+    content.innerHTML = html;
   }
 };
 
