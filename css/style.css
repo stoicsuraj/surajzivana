@@ -439,7 +439,6 @@ section.active {
 #about {
   background: transparent;
   padding: 0;
-  border-top: 1px dashed #999;
 }
 
 #about h1 {
@@ -623,12 +622,8 @@ footer a:hover {
 .paper-card {
   background: transparent;
   padding: 1.5rem;
-  border-bottom: 1px dashed #999;
-}
-
-.book-card:last-child,
-.paper-card:last-child {
-  border-bottom: none;
+  border: 1px dashed #999;
+  border-radius: 4px;
 }
 
 .book-title,
