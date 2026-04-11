@@ -203,7 +203,7 @@ const app = {
     
     const recentPosts = this.getRecentPosts(4);
     
-    let html = '<h1><i>swagat cha</i></h1><p><i>few of the stuffs i wrote</i></p><div class="posts-grid">';
+    let html = '<h1><i>swagat cha</i></h1><p><i>welcome to my realm</i></p><div class="posts-grid">';
     
     recentPosts.forEach(post => {
       html += `
