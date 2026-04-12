@@ -4,12 +4,11 @@ const app = {
   papers: null,
   currentTheme: 'light',
 
-  init() {
+  async init() {
     this.loadTheme();
     this.setupThemeToggle();
     this.loadPosts();
-    this.loadBooks();
-    this.loadPapers();
+    await Promise.all([this.loadBooks(), this.loadPapers()]);
     this.bindEvents();
     this.showSection('home');
   },
