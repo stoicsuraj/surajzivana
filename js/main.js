@@ -202,7 +202,7 @@ const app = {
     
     const recentPosts = this.getRecentPosts(4);
     
-    let html = '<h1><i>swagat cha</i></h1><p><i>welcome to my realm</i></p><div class="posts-grid">';
+    let html = '<h1><i>swagat cha</i></h1><p><i>here to waste time?</i></p><div class="posts-grid">';
     
     recentPosts.forEach(post => {
       html += `
@@ -388,4 +388,4 @@ const app = {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => app.init());
+document.addEventListener('DOMContentLoaded', async () => await app.init());
