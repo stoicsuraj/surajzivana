@@ -1,13 +1,12 @@
 {
-  "currentlyReading": [
+  "currentlyReading": [],
+  "fascinating": [
     {
       "id": "paper-1",
       "title": "The Economist as Engineer: Game Theory, Experimentation, and Computation in Economics",
       "authors": "Alvin E. Roth",
-      "dateAdded": "April 2026"
-    }
-  ],
-  "fascinating": [
+      "dateRead": "April 2026"
+    },
     {
       "id": "paper-2",
       "title": "Platform Competition in Two-Sided Markets",

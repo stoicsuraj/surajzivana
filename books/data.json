@@ -1,25 +1,24 @@
 {
-  "currentlyReading": [
+  "currentlyReading": [],
+  "favorites": [
     {
       "id": "book-1",
       "title": "Why Nations Fail?",
       "author": "Daron Acemoglu and James A. Robinson",
-      "dateAdded": "April 2026"
+      "dateRead": "April 2026"
     },
     {
       "id": "book-2",
       "title": "अलिखित",
       "author": "Dhruba Chandra Gautam",
-      "dateAdded": "March 2026"
+      "dateRead": "March 2026"
     },
     {
       "id": "book-3",
       "title": "Anna Karenina",
       "author": "Leo Tolstoy",
-      "dateAdded": "March 2026"
-    }
-  ],
-  "favorites": [
+      "dateRead": "March 2026"
+    },
     {
       "id": "book-4",
       "title": "The Aleph",
